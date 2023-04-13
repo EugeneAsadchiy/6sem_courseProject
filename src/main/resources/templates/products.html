@@ -11,10 +11,13 @@
 <header th:insert="blocks/header :: header"></header>
 <div class="container mt-50">
     <h1>Список обуви</h1>
-    <div th:each="users: ${users}" class="alert alert-info mt-2">
-        <p th:text="${users.}"></p>
-        <p th:text="${users.login}"></p>
-        <p th:text="${users.password}"></p>
+    <div th:each="el: ${products}" class="alert alert-info mt-2">
+        <p th:text="${el.name_products}"></p>
+        <p th:text="${el.gender}"></p>
+        <p th:text="${el.amount}"></p>
+        <p th:text="${el.cost}"></p>
+        <p th:text="${el.season}"></p>
+        <a th:href="'/products/'+${el.id_products}">Детальнее</a>
     </div>
 </div>
 
