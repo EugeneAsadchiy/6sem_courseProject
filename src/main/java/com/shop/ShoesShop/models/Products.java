@@ -25,8 +25,6 @@ public class Products {
     @Column(name="gender")
     private String gender;
 
-
-
     public Products(String name_products, String season, String amount, String cost, String gender) {
         this.name_products = name_products;
         this.season = season;
