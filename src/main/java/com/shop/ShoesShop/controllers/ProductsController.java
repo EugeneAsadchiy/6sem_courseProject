@@ -43,7 +43,7 @@ public class ProductsController {
 
     @GetMapping("/products/{id_products}")
     public String productsDetails(@PathVariable(value = "id_products") long id_products, Model model) {
-        if(!productsRepository.existsById(id_products)){
+        if (!productsRepository.existsById(id_products)) {
             return "redirect:/home";
         }
 //        Products product = productsRepository.findById(id_products);
@@ -67,6 +67,7 @@ public class ProductsController {
 
         return "products_edit";
     }
+
     @PostMapping("/products/{id_products}/edit")
     public String save_edit_products(@PathVariable(value = "id_products") long id_products, @RequestParam String name_products,
                                      @RequestParam String season, @RequestParam String amount, @RequestParam String cost,

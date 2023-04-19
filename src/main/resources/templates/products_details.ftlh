@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
 <head>
     <title>Список обуви</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -81,18 +81,7 @@
             </form>
         </div>
     </#list>
-<#--    <div th:each="el: ${products}" class="alert alert-info mt-2">-->
-<#--        <p th:text="${el.name_products}"></p>-->
-<#--        <p th:text="${el.gender}"></p>-->
-<#--        <p th:text="${el.amount}"></p>-->
-<#--        <p th:text="${el.cost}"></p>-->
-<#--        <p th:text="${el.season}"></p>-->
-<#--        <a th:href="'/products/'+ ${el.id_products} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>-->
-<#--        <form th:action="'/products/'+ ${el.id_products} + '/remove'" method="post">-->
-<#--            <button class="btn btn-warning" type="submit">Удалить</button>-->
-<#--        </form>-->
 
-<#--    </div>-->
 </div>
 
 </body>

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
 
 <head>
     <title>${title}</title>
@@ -67,6 +67,7 @@
         </div>
     </header>
 </div> <!--header-->
+
     <p>Hello, ${title}! </p>
 </body>
 </html>
