@@ -69,18 +69,21 @@
 </div> <!--header-->
 <div class="container mt-5 mb-5">
     <h1>Редактирование пары обуви</h1>
-    <#list products as prod>
+
         <div class="alert alert-info mt-2">
-            <form method="post">
-                <input type="text" value="${prod.name_products}" name="name_products" placeholder="Название обуви" class="form-control"><br>
-                <input type="text" value="${prod.season}" name="season" placeholder="Сезон" class="form-control"><br>
-                <input type="text" value="${prod.amount}" name="amount" placeholder="Количество" class="form-control"><br>
-                <input type="text" value="${prod.cost}" name="cost" placeholder="Цена" class="form-control"><br>
-                <input type="text" value="${prod.gender}" name="gender" placeholder="Пол" class="form-control"><br>
+            <form action="/products/${products.id_products}/edit" method="post" enctype="multipart/form-data">
+                <input type="text" value="${products.name_products}" name="name_products" placeholder="Название обуви" class="form-control"><br>
+                <input type="text" value="${products.season}" name="season" placeholder="Сезон" class="form-control"><br>
+                <input type="text" value="${products.amount}" name="amount" placeholder="Количество" class="form-control"><br>
+                <input type="text" value="${products.cost}" name="cost" placeholder="Цена" class="form-control"><br>
+                <input type="text" value="${products.gender}" name="gender" placeholder="Пол" class="form-control"><br>
+                <input type="file" name="file1" placeholder="Фотография1"><br><br>
+                <input type="file" name="file2" placeholder="Фотография2"><br><br>
+                <input type="file" name="file3" placeholder="Фотография3"><br><br>
                 <button type="submit" class="btn btn-success">Обновить</button>
             </form>
         </div>
-    </#list>
+
 </div>
 
 </body>

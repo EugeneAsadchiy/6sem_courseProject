@@ -69,12 +69,15 @@
 </div> <!--header-->
 <div class="container mt-5 mb-5">
     <h1>Добавление пары обуви</h1>
-    <form action="/add_products" method="post">
+    <form action="/add_products" method="post" enctype="multipart/form-data">
         <input type="text" name="name_products" placeholder="Название обуви" class="form-control"><br>
         <input type="text" name="season" placeholder="Сезон" class="form-control"><br>
         <input type="text" name="amount" placeholder="Количество" class="form-control"><br>
         <input type="text" name="cost" placeholder="Цена" class="form-control"><br>
         <input type="text" name="gender" placeholder="Пол" class="form-control"><br>
+        <input type="file" name="file1" placeholder="Фотография1"><br><br>
+        <input type="file" name="file2" placeholder="Фотография2"><br><br>
+        <input type="file" name="file3" placeholder="Фотография3"><br><br>
         <button type="submit" class="btn btn-success">Добавить пару</button>
     </form>
 </div>

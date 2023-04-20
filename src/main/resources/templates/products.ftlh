@@ -71,6 +71,13 @@
     <h1>Список обуви</h1>
     <#list products as prod>
         <div class="alert alert-info mt-2">
+            <#list prod.getImage() as img>
+                <img src="/images/${img.id_images}" alt="">
+            </#list>
+<#--            <img src="/images/${prod.getImage()[0]}" height="120px"><br>-->
+<#--            <img src="/images/${prod.getImage()[1]}" height="120px"><br>-->
+<#--            <img src="/images/${prod.getImage()[2]}" height="120px"><br>-->
+
             <p>${prod.name_products}</p>
             <p> ${prod.gender}</p>
             <p> ${prod.amount}</p>
