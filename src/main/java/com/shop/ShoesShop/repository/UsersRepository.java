@@ -10,4 +10,6 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     boolean existsUsersByUserLoginAndUserPassword(String userLogin, String userPassword);
     boolean existsUsersByUserLogin(String userLogin);
+
+    Users findByUserLogin(String userLogin);
 }

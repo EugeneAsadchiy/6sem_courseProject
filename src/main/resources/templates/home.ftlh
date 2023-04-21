@@ -23,35 +23,69 @@
                         <li>
                             <a href="/home" class="nav-link text-secondary">
                                 <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"></use></svg>
-                                Home
+                                Главная
                             </a>
                         </li>
                         <li>
-                            <a href="/add_products" class="nav-link text-white">
-                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"></use></svg>
-                                Add products
-                            </a>
+                            <#if session==1>
+                                <a href="/add_products" class="nav-link text-white">
+                                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"></use></svg>
+                                    Добавить обувь
+                                </a>
+                            </#if>
                         </li>
                         <li>
-                            <a href="/" class="nav-link text-white">
-                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"></use></svg>
-                                Orders
-                            </a>
+                            <#if session==1>
+                                <a href="/" class="nav-link text-white">
+                                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"></use></svg>
+                                    Заказы
+                                </a>
+                            <#else>
+                                <a href="/" class="nav-link text-white">
+                                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"></use></svg>
+                                    Корзина
+                                </a>
+                            </#if>
                         </li>
                         <li>
-                            <a href="/products" class="nav-link text-white">
-                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"></use></svg>
-                                Products
-                            </a>
+                            <#if session==1>
+                                <a href="/products" class="nav-link text-white">
+                                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"></use></svg>
+                                    Обувь
+                                </a>
+                            <#else>
+                                <a href="/" class="nav-link text-white">
+                                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"></use></svg>
+                                    ****
+                                </a>
+                            </#if>
                         </li>
                         <li>
+                            <#if session==1>
                             <a href="/" class="nav-link text-white">
                                 <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"></use></svg>
-                                Customers
+                                Покупатели
                             </a>
+                            <#else>
+                            <a href="/" class="nav-link text-white">
+                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"></use></svg>
+                                О нас
+                            </a>
+                            </#if>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-danger text-dark me-2" style="margin-top: 30px; margin-left: 670px">
+                            <a href="/" class="nav-link text-white" style=" margin-left: 600px">
+                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"></use></svg>
+                                ${profile}
+                            </a>
+<#--                            <#if session==1>-->
+
+<#--                            <#else>-->
+<#--                                <p>В корзину</p>-->
+<#--                            </#if>-->
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-danger text-dark me-2" style="margin-top: 30px; margin-left: 30px">
                                 <a href="/authorization" style="color: black; text-decoration: none">Выйти</a>
                             </button>
                         </li>
@@ -75,7 +109,7 @@
             <div class="card" style="width: 18rem;">
                 <img src="/images/${prod.image[0].id_images}" class="card-img-top" alt="...">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">${prod.name_products}</li>
+                    <li class="list-group-item">${prod.nameProducts}</li>
                     <li class="list-group-item">${prod.cost} р.</li>
                 </ul>
             </div><br>

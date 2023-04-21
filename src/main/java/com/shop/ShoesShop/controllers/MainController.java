@@ -33,6 +33,8 @@ public class MainController {
         Iterable<Products> product = productsRepository.findAll();
         model.addAttribute("products", product);
 //        model.addAttribute("images", product.)
+        model.addAttribute("session", Users.session);
+        model.addAttribute("profile", Users.profile);
         return "home";
     }
 
@@ -47,6 +49,7 @@ public class MainController {
         boolean check = usersService.enterUsers(userLogin, userPassword);
         if (check)
         {
+            Users.profile=userLogin;
             return "redirect:/home";
         }
         else {
@@ -69,6 +72,7 @@ public class MainController {
         }
         else {
             usersService.saveUsers(users);
+            Users.profile=users.getUserLogin();
             return "redirect:/home";
         }
     }

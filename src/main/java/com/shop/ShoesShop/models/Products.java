@@ -20,7 +20,7 @@ public class Products {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_products;
     @Column(name="name_products")
-    private String name_products;
+    private String nameProducts;
     @Column(name="season")
     private String season;
     @Column(name="amount")
@@ -46,8 +46,8 @@ public class Products {
     }
 
 
-    public Products(String name_products, String season, String amount, String cost, String gender) {
-        this.name_products = name_products;
+    public Products(String nameProducts, String season, String amount, String cost, String gender) {
+        this.nameProducts = nameProducts;
         this.season = season;
         this.amount = amount;
         this.cost = cost;

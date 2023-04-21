@@ -18,12 +18,6 @@ import java.util.Optional;
 public class ProductsService {
     private final ProductsRepository productsRepository;
 
-//    public List<Products> listProducts(Long id_products)
-//    {
-//        if (id_products!=null) return productsRepository.findById_products(id_products);
-//        return productsRepository.findAll();
-//    }
-
     public void saveProducts(Products products, MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
         Images image1;
         Images image2;

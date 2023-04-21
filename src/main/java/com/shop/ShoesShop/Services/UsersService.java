@@ -1,5 +1,6 @@
 package com.shop.ShoesShop.Services;
 
+import com.shop.ShoesShop.models.Products;
 import com.shop.ShoesShop.models.Users;
 import com.shop.ShoesShop.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,10 @@ import java.io.IOException;
 public class UsersService {
     private final UsersRepository usersRepository;
 
+    public Users getUserById(Long id)
+    {
+        return usersRepository.findById(id).orElse(null);
+    }
     public void saveUsers(Users users) throws IOException {
 
         Users usersFromDB = usersRepository.save(users);
@@ -22,7 +27,19 @@ public class UsersService {
 
     public boolean enterUsers(String userLogin, String userPassword) throws IOException
     {
-        return usersRepository.existsUsersByUserLoginAndUserPassword(userLogin, userPassword);
+        boolean proverka = usersRepository.existsUsersByUserLoginAndUserPassword(userLogin, userPassword);
+        if (proverka)
+        {
+            Users user = usersRepository.findByUserLogin(userLogin);
+            if(user.getRole()==0)
+            {
+                Users.session=0;
+            }
+            else {
+                Users.session=1;
+            }
+        }
+        return proverka;
     }
     public boolean registrationUsers(String userLogin, String userPassword) throws IOException
     {
