@@ -69,8 +69,7 @@ public class ProductsController {
             return "redirect:/home";
         }
         Products products = productsService.getProductById(id_products);
-//        ArrayList<Products> prod = new ArrayList<>();
-//        products.ifPresent(prod::add);
+
         model.addAttribute("products", products);
         model.addAttribute("images", products.getImage());
 

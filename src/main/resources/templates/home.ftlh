@@ -2,9 +2,11 @@
 <html lang="ru">
 
 <head>
-    <title>${title}</title>
+    <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/css/${"home.css"}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+<#--    <link rel="stylesheet" href="/css/${"home.css"}">-->
 </head>
 
 <body>
@@ -13,9 +15,9 @@
         <div class="px-3 py-2 text-bg-dark">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-                    </a>
+<#--                    <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">-->
+<#--                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>-->
+<#--                    </a>-->
 
                     <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                         <li>
@@ -49,7 +51,7 @@
                             </a>
                         </li>
                         <li>
-                            <button type="button" class="btn btn-danger text-dark me-2" style="margin-top: 30px">
+                            <button type="button" class="btn btn-danger text-dark me-2" style="margin-top: 30px; margin-left: 670px">
                                 <a href="/authorization" style="color: black; text-decoration: none">Выйти</a>
                             </button>
                         </li>
@@ -67,6 +69,19 @@
     </header>
 </div> <!--header-->
 
-    <p>Hello, ${title}! </p>
+<#list products as prod>
+    <div class="pop">
+        <a href="products/${prod.id_products}" style="text-decoration: none">
+            <div class="card" style="width: 18rem;">
+                <img src="/images/${prod.image[0].id_images}" class="card-img-top" alt="...">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">${prod.name_products}</li>
+                    <li class="list-group-item">${prod.cost} р.</li>
+                </ul>
+            </div><br>
+        </a>
+    </div>
+</#list>
+
 </body>
 </html>

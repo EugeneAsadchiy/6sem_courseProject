@@ -48,11 +48,12 @@
                                 Customers
                             </a>
                         </li>
+                        <li>
+                            <button type="button" class="btn btn-danger text-dark me-2" style="margin-top: 30px">
+                                <a href="/authorization" style="color: black; text-decoration: none">Выйти</a>
+                            </button>
+                        </li>
                     </ul>
-                </div>
-                <div class="text-end">
-                    <button type="button" class="btn btn-light text-dark me-2">Login</button>
-                    <button type="button" class="btn btn-primary">Sign-up</button>
                 </div>
             </div>
         </div>
@@ -61,8 +62,6 @@
                 <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
                     <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                 </form>
-
-
             </div>
         </div>
     </header>
@@ -74,10 +73,6 @@
             <#list prod.getImage() as img>
                 <img src="/images/${img.id_images}" alt="">
             </#list>
-<#--            <img src="/images/${prod.getImage()[0]}" height="120px"><br>-->
-<#--            <img src="/images/${prod.getImage()[1]}" height="120px"><br>-->
-<#--            <img src="/images/${prod.getImage()[2]}" height="120px"><br>-->
-
             <p>${prod.name_products}</p>
             <p> ${prod.gender}</p>
             <p> ${prod.amount}</p>

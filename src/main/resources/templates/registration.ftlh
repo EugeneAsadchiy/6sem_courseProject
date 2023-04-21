@@ -19,11 +19,11 @@
 
                 <span class="heading">РЕГИСТРАЦИЯ</span>
                 <div class="form-group">
-                    <input type="email" name="user_login" class="form-control" id="inputEmail" placeholder="E-mail">
+                    <input type="email" name="userLogin" class="form-control" id="inputEmail" placeholder="E-mail">
                     <i class="fa fa-user"></i>
                 </div>
                 <div class="form-group help">
-                    <input type="password" name="user_password" class="form-control" id="inputPassword" placeholder="Password">
+                    <input type="password" name="userPassword" class="form-control" id="inputPassword" placeholder="Password">
                     <i class="fa fa-lock"></i>
                     <a href="#" class="fa fa-question-circle"></a>
                 </div>

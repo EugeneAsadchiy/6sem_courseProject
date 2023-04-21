@@ -16,14 +16,14 @@ public class Users {
     private Long id_users;
     @Column(name="user_login")
 
-    private String user_login;
+    private String userLogin;
     @Column(name="user_password")
-    private String user_password;
+    private String userPassword;
     @Column(name="role")
     private int role;
 
-    public Users(String user_login, String user_password) {
-        this.user_login = user_login;
-        this.user_password = user_password;
+    public Users(String userLogin, String userPassword) {
+        this.userLogin = userLogin;
+        this.userPassword = userPassword;
     }
 }
