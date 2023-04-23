@@ -19,37 +19,39 @@ public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_products;
-    @Column(name="name_products")
+    @Column(name = "name_products")
     private String nameProducts;
-    @Column(name="season")
+    @Column(name = "season")
     private String season;
-    @Column(name="amount")
+    @Column(name = "amount")
     private String amount;
-    @Column(name="cost")
+    @Column(name = "size")
+    private String size;
+    @Column(name = "cost")
     private String cost;
-    @Column(name="gender")
+    @Column(name = "gender")
     private String gender;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="products", orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "products", orphanRemoval = true)
     private List<Images> image = new ArrayList<>();
     private Long previewImageId;
     private LocalDateTime dataOfCreated;
+
     @PrePersist
-    private void init()
-    {
-        dataOfCreated= LocalDateTime.now();
+    private void init() {
+        dataOfCreated = LocalDateTime.now();
     }
 
-    public void addImageToProduct(Images images)
-    {
+    public void addImageToProduct(Images images) {
         images.setProducts(this);
         image.add(images);
     }
 
 
-    public Products(String nameProducts, String season, String amount, String cost, String gender) {
+    public Products(String nameProducts, String season, String amount, String size, String cost, String gender) {
         this.nameProducts = nameProducts;
         this.season = season;
         this.amount = amount;
+        this.size = size;
         this.cost = cost;
         this.gender = gender;
     }

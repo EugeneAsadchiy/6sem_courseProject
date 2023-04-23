@@ -20,6 +20,8 @@ public class Orders {
     private String season;
     @Column(name="amount")
     private String amount;
+    @Column(name = "size")
+    private String size;
     @Column(name="cost")
     private String cost;
     @Column(name="gender")

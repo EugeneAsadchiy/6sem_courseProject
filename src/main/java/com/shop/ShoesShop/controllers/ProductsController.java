@@ -20,6 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 @Controller
 public class ProductsController {
@@ -70,11 +73,22 @@ public class ProductsController {
         if (!productsRepository.existsById(id_products)) {
             return "redirect:/home";
         }
+
         Products products = productsService.getProductById(id_products);
         model.addAttribute("products", products);
         model.addAttribute("images", products.getImage());
         model.addAttribute("session", Users.session);
         model.addAttribute("profile", Users.profile);
+        String myStr = products.getSize();
+        StringTokenizer st = new StringTokenizer(myStr, "-");
+        int start = Integer.parseInt(st.nextToken());
+        int end = Integer.parseInt(st.nextToken());
+        List<Integer> myArrayList = new ArrayList<>();
+
+        for(int i=start; i<=end; i++) {
+            myArrayList.add(i);
+        }
+        model.addAttribute("size_array", myArrayList);
 
         return "products_details";
     }
@@ -116,11 +130,11 @@ public class ProductsController {
         return "redirect:/products";
     }
     @PostMapping("/products/{id_products}/order")
-    public String order_products(@PathVariable Long id_products, Model model) {
+    public String order_products(@PathVariable Long id_products,@RequestParam(name = "size") String size,Model model) {
         Products products = productsRepository.findById(id_products).orElseThrow();
-
+        System.out.println(size);
         Users users= usersRepository.findByUserLogin(Users.profile);
-        ordersService.saveOrders(products, users.getId_users());
+        ordersService.saveOrders(products,size, users.getId_users());
         return "redirect:/products/{id_products}";
     }
 

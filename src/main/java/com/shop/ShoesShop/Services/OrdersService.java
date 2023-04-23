@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class OrdersService {
     private final OrdersRepository ordersRepository;
-    public void saveOrders(Products products, Long id_users) {
+    public void saveOrders(Products products,String size ,Long id_users) {
         Orders orders= new Orders();
         orders.setNameProducts(products.getNameProducts());
         orders.setCost(products.getCost());
@@ -21,6 +21,7 @@ public class OrdersService {
         orders.setAmount("1");
         orders.setSeason(products.getSeason());
         orders.setIdUsers(id_users);
+        orders.setSize(size);
         ordersRepository.save(orders);
     }
 }

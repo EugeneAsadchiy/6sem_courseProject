@@ -106,6 +106,7 @@
         <input type="text" name="nameProducts" placeholder="Название обуви" class="form-control"><br>
         <input type="text" name="season" placeholder="Сезон" class="form-control"><br>
         <input type="text" name="amount" placeholder="Количество" class="form-control"><br>
+        <input type="text" name="size" placeholder="Размеры" class="form-control"><br>
         <input type="text" name="cost" placeholder="Цена" class="form-control"><br>
         <input type="text" name="gender" placeholder="Пол" class="form-control"><br>
         <input type="file" name="file1" placeholder="Фотография1"><br><br>

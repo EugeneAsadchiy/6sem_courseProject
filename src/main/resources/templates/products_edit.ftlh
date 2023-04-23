@@ -108,6 +108,7 @@
                 <input type="text" value="${products.nameProducts}" name="nameProducts" placeholder="Название обуви" class="form-control"><br>
                 <input type="text" value="${products.season}" name="season" placeholder="Сезон" class="form-control"><br>
                 <input type="text" value="${products.amount}" name="amount" placeholder="Количество" class="form-control"><br>
+                <input type="text" value="${products.size}" name="size" placeholder="Размеры" class="form-control"><br>
                 <input type="text" value="${products.cost}" name="cost" placeholder="Цена" class="form-control"><br>
                 <input type="text" value="${products.gender}" name="gender" placeholder="Пол" class="form-control"><br>
                 <input type="file" name="file1" placeholder="Фотография1"><br><br>

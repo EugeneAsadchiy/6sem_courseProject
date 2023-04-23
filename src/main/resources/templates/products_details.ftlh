@@ -108,70 +108,57 @@
 
 <div class="container mt-50">
 
-<#--    <#list products as prod>-->
-<#--        <div class="alert alert-info mt-2">-->
-<#--            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="width: 100%;height: 100%; object-fit: contain;display: block; align-items: center; z-index: 99999">-->
-<#--                <ol class="carousel-indicators">-->
-<#--                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>-->
-<#--                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>-->
-<#--                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>-->
-<#--                </ol>-->
-<#--                <div class="carousel-inner">-->
-<#--                    <div class="carousel-item active" >-->
-<#--                        <img class="d-block w-100" src="/images/${products.image[0].id_images}" alt="First slide">-->
-<#--                    </div>-->
-<#--                    <div class="carousel-item">-->
-<#--                        <img class="d-block w-100" src="/images/${products.image[1].id_images}" alt="Second slide">-->
-<#--                    </div>-->
-<#--                    <div class="carousel-item">-->
-<#--                        <img class="d-block w-100" src="/images/${products.image[2].id_images}" alt="Third slide">-->
-<#--                    </div>-->
-<#--                </div>-->
-<#--                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">-->
-<#--                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-<#--                    <span class="sr-only">Previous</span>-->
-<#--                </a>-->
-<#--                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">-->
-<#--                    <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-<#--                    <span class="sr-only">Next</span>-->
-<#--                </a>-->
-<#--            </div>-->
-<#--            <#list images as img>-->
-<#--                <img src="/images/${img.id_images}" height="120px"><br>-->
-<#--            </#list>-->
-    <div class="card" style="width: 18rem; flex-direction: row">
-        <img src="/images/${products.image[0].id_images}" class="card-img-top" alt="..." style="margin-right: 50%">
-        <img src="/images/${products.image[1].id_images}" class="card-img-top" alt="..." style="margin-right: 50%">
-        <img src="/images/${products.image[2].id_images}" class="card-img-top" alt="...">
-    </div><br>
-            <p> Название: ${products.nameProducts}</p>
-            <p> Пол: ${products.gender}</p>
-            <#if session==1>
-                <p> Количество: ${products.amount}</p>
-            </#if>
 
-            <p> Цена: ${products.cost}</p>
-            <p> Сезон: ${products.season}</p>
-
-            <#if session==1>
-                <div style="display: flex">
-                    <div style="margin-right: 30px">
-                        <a href="/products/${products.id_products}/edit" class="btn btn-warning">Редактировать</a>
-                    </div>
-                    <div>
-                        <form action="/products/${products.id_products}/remove" method="post">
-                            <button class="btn btn-warning" type="submit">Удалить</button>
-                        </form>
-                    </div>
-
-                </div><br>
-            <#else>
-                <form action="/products/${products.id_products}/order" method="post">
-                    <button class="btn btn-warning" type="submit">В корзину</button>
-                </form>
-            </#if>
-
+    <div style="display: flex; width: 50rem">
+        <div class="card" style="margin-right: 20px">
+            <img src="/images/${products.image[0].id_images}" class="card-img-top" alt="..." >
         </div>
+        <div class="card" style="margin-right: 20px">
+            <img src="/images/${products.image[1].id_images}" class="card-img-top" alt="..." >
+        </div>
+        <div class="card" style="">
+            <img src="/images/${products.image[2].id_images}" class="card-img-top" alt="...">
+        </div>
+    </div>
+
+    <div>
+        <p> Название: ${products.nameProducts}</p>
+        <p> Пол: ${products.gender}</p>
+        <#if session==1>
+            <p> Количество: ${products.amount}</p>
+        </#if>
+        <p> Размеры: ${products.size}</p>
+        <p> Цена: ${products.cost}</p>
+        <p> Сезон: ${products.season}</p>
+
+        <#if session==1>
+            <div style="display: flex">
+                <div style="margin-right: 30px">
+                    <a href="/products/${products.id_products}/edit" class="btn btn-warning">Редактировать</a>
+                </div>
+                <div>
+                    <form action="/products/${products.id_products}/remove" method="post">
+                        <button class="btn btn-warning" type="submit">Удалить</button>
+                    </form>
+                </div>
+
+            </div><br>
+        <#else>
+        <form action="/products/${products.id_products}/order" method="post">
+            <label>
+                <select name="size">
+                    <option disabled>Выберите размер</option>
+                <#list size_array as size_list>
+                    <option value="${size_list}">${size_list}</option>
+                </#list>
+                </select>
+            </label>
+
+                <button class="btn btn-warning" type="submit">В корзину</button>
+        </form>
+        </#if>
+
+    </div>
 <#--    </#list>-->
 
 </div>

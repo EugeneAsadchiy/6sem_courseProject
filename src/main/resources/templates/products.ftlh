@@ -112,6 +112,7 @@
             <p> Название: ${prod.nameProducts}</p>
             <p> Пол: ${prod.gender}</p>
             <p> Количество: ${prod.amount}</p>
+            <p> Размеры: ${prod.size}</p>
             <p> Цена: ${prod.cost}</p>
             <p> Сезон: ${prod.season}</p>
             <a href="/products/${prod.id_products}" class="btn btn-warning">Детальнее</a>

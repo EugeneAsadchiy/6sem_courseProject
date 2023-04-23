@@ -111,6 +111,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">${prod.nameProducts}</li>
                     <li class="list-group-item">${prod.cost} р.</li>
+                    <li class="list-group-item">${prod.size} размеры</li>
                 </ul>
             </div><br>
         </a>
