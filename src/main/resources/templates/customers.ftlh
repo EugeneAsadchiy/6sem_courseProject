@@ -1,15 +1,12 @@
 <!DOCTYPE HTML>
 <html lang="ru">
+
 <head>
-    <title>Список обуви</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/css/${"home.css"}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" defer></script>
-<#--    <script src="js/script.js" defer></script>-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <#--    <link rel="stylesheet" href="/css/${"home.css"}">-->
 </head>
 
 <body>
@@ -65,7 +62,7 @@
                         </li>
                         <li>
                             <#if session==1>
-                                <a href="/" class="nav-link text-white">
+                                <a href="/customers" class="nav-link text-white">
                                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"></use></svg>
                                     Покупатели
                                 </a>
@@ -105,64 +102,53 @@
         </div>
     </header>
 </div> <!--header-->
-
-<div class="container mt-50">
-
-
-    <div style="display: flex; width: 50rem">
-        <div class="card" style="margin-right: 20px">
-            <img src="/images/${products.image[0].idImages}" class="card-img-top" alt="..." >
-        </div>
-        <div class="card" style="margin-right: 20px">
-            <img src="/images/${products.image[1].idImages}" class="card-img-top" alt="..." >
-        </div>
-        <div class="card" style="">
-            <img src="/images/${products.image[2].idImages}" class="card-img-top" alt="...">
-        </div>
-    </div>
-
-    <div>
-        <p> Название: ${products.nameProducts}</p>
-        <p> Пол: ${products.gender}</p>
-        <#if session==1>
-            <p> Количество: ${products.amount}</p>
-        </#if>
-        <p> Размеры: ${products.size}</p>
-        <p> Цена: ${products.cost}</p>
-        <p> Сезон: ${products.season}</p>
-
-        <#if session==1>
-            <div style="display: flex">
-                <div style="margin-right: 30px">
-                    <a href="/products/${products.id_products}/edit" class="btn btn-warning">Редактировать</a>
-                </div>
-                <div>
-                    <form action="/products/${products.id_products}/remove" method="post">
-                        <button class="btn btn-warning" type="submit">Удалить</button>
-                    </form>
-                </div>
-
-            </div><br>
-        <#else>
-        <form action="/products/${products.id_products}/order" method="post">
-            <label style="display: flex">
-                <p>Выберите желаемый размер:</p>
-                <select name="size">
-<#--                    <option>Выберите размер</option>-->
-                <#list size_array as size_list>
-                    <option value="${size_list}">${size_list}</option>
-                </#list>
-                </select>
-            </label>
-
-                <button class="btn btn-warning" type="submit">В корзину</button>
-        </form>
-        </#if>
-
-    </div>
-<#--    </#list>-->
-
-</div>
+<table class="table" style="margin-left: 100px">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Логин</th>
+            <th scope="col">Пароль</th>
+            <th scope="col">Роль</th>
+        </tr>
+    </thead>
+    <tbody>
+        <#list users as us>
+            <tr>
+                <th scope="row">${us.id_users}</th>
+                <td>${us.userLogin}</td>
+                <td>${us.userPassword}</td>
+                <#if us.role==1>
+                    <td>
+                        Админ
+                    </td>
+                <#else>
+                    <td>
+                        Пользователь
+                    </td>
+                </#if>
+            </tr>
+        </#list>
+    </tbody>
+</table>
+<#--<#list users as us>-->
+<#--    <div>-->
+<#--        <p>${us.userLogin}</p>-->
+<#--        <p>${us.userPassword}</p>-->
+<#--        <p>${us.role}</p>-->
+<#--    </div>-->
+<#--    <div class="pop">-->
+<#--        <a href="products/${prod.id_products}" style="text-decoration: none">-->
+<#--            <div class="card" style="width: 18rem;">-->
+<#--                <img src="/images/${prod.image[0].idImages}" class="card-img-top" alt="...">-->
+<#--                <ul class="list-group list-group-flush">-->
+<#--                    <li class="list-group-item">${prod.nameProducts}</li>-->
+<#--                    <li class="list-group-item">${prod.cost} р.</li>-->
+<#--                    <li class="list-group-item">${prod.size} размеры</li>-->
+<#--                </ul>-->
+<#--            </div><br>-->
+<#--        </a>-->
+<#--    </div>-->
+<#--</#list>-->
 
 </body>
 </html>

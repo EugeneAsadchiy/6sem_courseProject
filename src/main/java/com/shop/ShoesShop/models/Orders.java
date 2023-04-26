@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "orders")
 @Data
@@ -28,4 +31,11 @@ public class Orders {
     private String gender;
     @Column(name="id_users")
     private Long idUsers;
+    @Column(name="url_images")
+    private String urlImages;
+
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "orders", orphanRemoval = true)
+//    private List<Images> image = new ArrayList<>();
+//    private Long previewImageId;
+
 }

@@ -41,7 +41,7 @@
                                     Заказы
                                 </a>
                             <#else>
-                                <a href="/" class="nav-link text-white">
+                                <a href="/orders" class="nav-link text-white">
                                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"></use></svg>
                                     Корзина
                                 </a>
@@ -62,7 +62,7 @@
                         </li>
                         <li>
                             <#if session==1>
-                            <a href="/" class="nav-link text-white">
+                            <a href="/customers" class="nav-link text-white">
                                 <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"></use></svg>
                                 Покупатели
                             </a>
@@ -95,8 +95,8 @@
         </div>
         <div class="px-3 py-2 border-bottom mb-3">
             <div class="container d-flex flex-wrap justify-content-center">
-                <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search" action="/home" method="get">
+                    <input type="text" name="searchName" class="form-control" placeholder="Search..." aria-label="Search">
                 </form>
             </div>
         </div>
@@ -104,10 +104,10 @@
 </div> <!--header-->
 
 <#list products as prod>
-    <div class="pop">
+    <div class="pop" id="myList">
         <a href="products/${prod.id_products}" style="text-decoration: none">
             <div class="card" style="width: 18rem;">
-                <img src="/images/${prod.image[0].id_images}" class="card-img-top" alt="...">
+                <img src="/images/${prod.image[0].idImages}" class="card-img-top" alt="...">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">${prod.nameProducts}</li>
                     <li class="list-group-item">${prod.cost} р.</li>

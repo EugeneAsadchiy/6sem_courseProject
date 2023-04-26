@@ -38,7 +38,7 @@ public class ProductsService {
             products.addImageToProduct(image3);
         }
         Products productsFromDB= productsRepository.save(products);
-        productsFromDB.setPreviewImageId(productsFromDB.getImage().get(0).getId_images());
+        productsFromDB.setPreviewImageId(productsFromDB.getImage().get(0).getIdImages());
 //        log.info("Saving new Product name:{}", products);
         productsRepository.save(products);
     }
@@ -46,7 +46,7 @@ public class ProductsService {
     private Images toImageEntity(MultipartFile file) throws IOException {
         Images images = new Images();
         images.setName_images(file.getName());
-        images.setUrl_images(file.getOriginalFilename());
+        images.setUrlImages(file.getOriginalFilename());
         images.setContentType(file.getContentType());
         images.setSize(file.getSize());
         images.setBytes(file.getBytes());
@@ -56,6 +56,13 @@ public class ProductsService {
     public Products getProductById(Long id)
     {
         return productsRepository.findById(id).orElse(null);
+    }
+    public List<Products> getProductByName(String name)
+    {
+        if (name == null) return productsRepository.findAll();
+        if (name.length() >= 1) return productsRepository.findByNameProducts(name);
+        return  productsRepository.findAll();
+//        return productsRepository.findByNameProducts(name);
     }
 
 

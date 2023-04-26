@@ -1,11 +1,15 @@
 package com.shop.ShoesShop.controllers;
 
+import com.shop.ShoesShop.Services.ImagesService;
 import com.shop.ShoesShop.Services.OrdersService;
 import com.shop.ShoesShop.Services.ProductsService;
 import com.shop.ShoesShop.Services.UsersService;
+import com.shop.ShoesShop.models.Images;
+import com.shop.ShoesShop.models.Orders;
 import com.shop.ShoesShop.models.Products;
 
 import com.shop.ShoesShop.models.Users;
+import com.shop.ShoesShop.repository.ImagesRepository;
 import com.shop.ShoesShop.repository.OrdersRepository;
 import com.shop.ShoesShop.repository.ProductsRepository;
 import com.shop.ShoesShop.repository.UsersRepository;
@@ -35,10 +39,15 @@ public class ProductsController {
     @Autowired
     private OrdersRepository ordersRepository;
     private final OrdersService ordersService;
-    public ProductsController(ProductsService productsService, UsersService usersService, OrdersService ordersService) {
+    @Autowired
+    private ImagesRepository imagesRepository;
+    private final ImagesService imagesService;
+
+    public ProductsController(ProductsService productsService, UsersService usersService, OrdersService ordersService, ImagesService imagesService) {
         this.productsService = productsService;
         this.usersService = usersService;
         this.ordersService = ordersService;
+        this.imagesService = imagesService;
     }
 
     @GetMapping("/products")
@@ -50,6 +59,23 @@ public class ProductsController {
         model.addAttribute("profile", Users.profile);
 //        model.addAttribute("images", product.)
         return "products";
+    }
+
+    @GetMapping("/orders")
+    public String Orders(Model model) {
+        Users users = usersRepository.findByUserLogin(Users.profile);
+
+        List<Orders> order = ordersService.getOrdersByIdUsers(users.getId_users());
+        System.out.println(order);
+//        Iterable<Products> product = productsRepository.findAll();
+//        Images images = imagesRepository.findByOrdersIdProducts()
+//        model.addAttribute("products", product);
+        model.addAttribute("orders", order);
+
+//        model.addAttribute("images", product.)
+        model.addAttribute("session", Users.session);
+        model.addAttribute("profile", Users.profile);
+        return "orders";
     }
 
 
@@ -85,7 +111,7 @@ public class ProductsController {
         int end = Integer.parseInt(st.nextToken());
         List<Integer> myArrayList = new ArrayList<>();
 
-        for(int i=start; i<=end; i++) {
+        for (int i = start; i <= end; i++) {
             myArrayList.add(i);
         }
         model.addAttribute("size_array", myArrayList);
@@ -114,7 +140,7 @@ public class ProductsController {
         products.setId_products(id_products);
 //        productsRepository.save(products);
         LocalDateTime dataOfCreated;
-        dataOfCreated= LocalDateTime.now();
+        dataOfCreated = LocalDateTime.now();
 //        products.setPreviewImageId();
         products.setDataOfCreated(dataOfCreated);
         productsService.saveProducts(products, file1, file2, file3);
@@ -129,14 +155,15 @@ public class ProductsController {
 
         return "redirect:/products";
     }
+
     @PostMapping("/products/{id_products}/order")
-    public String order_products(@PathVariable Long id_products,@RequestParam(name = "size") String size,Model model) {
+    public String order_products(@PathVariable Long id_products, @RequestParam(name = "size") String size, Model model) {
         Products products = productsRepository.findById(id_products).orElseThrow();
         System.out.println(size);
-        Users users= usersRepository.findByUserLogin(Users.profile);
-        ordersService.saveOrders(products,size, users.getId_users());
+        Users users = usersRepository.findByUserLogin(Users.profile);
+//        Images images = imagesRepository.findById(products.getPreviewImageId());
+        Images images = imagesService.getUrl(products.getPreviewImageId());
+        ordersService.saveOrders(products, images.getUrlImages(), size, users.getId_users());
         return "redirect:/products/{id_products}";
     }
-
-
 }

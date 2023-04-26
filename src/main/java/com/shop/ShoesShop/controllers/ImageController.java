@@ -21,7 +21,7 @@ public class ImageController {
     {
         Images images = imagesRepository.findById(id).orElse(null);
         return ResponseEntity.ok()
-                .header("filename", images.getUrl_images())
+                .header("filename", images.getUrlImages())
                 .contentType(MediaType.valueOf(images.getContentType()))
                 .contentLength(images.getSize())
                 .body(new InputStreamResource(new ByteArrayInputStream(images.getBytes())));

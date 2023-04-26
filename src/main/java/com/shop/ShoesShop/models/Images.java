@@ -13,24 +13,26 @@ import lombok.NoArgsConstructor;
 public class Images {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_images;
+    private Long idImages;
     @Column(name = "name_images")
     private String name_images;
     @Column(name = "url_images")
-    private String url_images;
+    private String urlImages;
     @Column(name = "size")
     private Long size;
-    @Column(name = "contentType")
+    @Column(name = "content_type")
     private String contentType;
-    @Column(name = "isPreviewImage")
+    @Column(name = "is_preview_image")
     private boolean isPreviewImage;
     @Lob
     private byte[] bytes;
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private Products products;
+//    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+//    private Orders orders;
 
-    public Images(String name_images, String url_images) {
+    public Images(String name_images, String urlImages) {
         this.name_images = name_images;
-        this.url_images = url_images;
+        this.urlImages = urlImages;
     }
 }
