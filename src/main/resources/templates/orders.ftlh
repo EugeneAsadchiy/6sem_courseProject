@@ -102,17 +102,27 @@
         </div>
     </header>
 </div> <!--header-->
-<h1>Корзина</h1>
+<div style="display: flex; margin-left: 150px">
+<h1>Корзина</h1><br>
+<h1 style="margin-left: 750px">Итого</h1>
+<h2 class="box" style=" margin-left: 30px">${fullprice} р.</h2>
+</div>
 <#list orders as order>
     <div class="pip">
 <#--        <a href="products/${order.id_products}" style="text-decoration: none">-->
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem;" >
+
                 <img src="../img/${order.getUrlImages()?string}" class="card-img-top" alt="...">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">${order.nameProducts}</li>
                     <li class="list-group-item">${order.cost} р.</li>
                     <li class="list-group-item">${order.size} размер</li>
                 </ul>
+                <div>
+                    <form action="/orders/${order.nameProducts}/remove" method="post">
+                        <button class="btn btn-warning" type="submit">Удалить</button>
+                    </form>
+                </div>
             </div><br>
 <#--        </a>-->
     </div>

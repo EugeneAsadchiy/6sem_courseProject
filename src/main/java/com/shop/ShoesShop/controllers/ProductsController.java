@@ -61,23 +61,6 @@ public class ProductsController {
         return "products";
     }
 
-    @GetMapping("/orders")
-    public String Orders(Model model) {
-        Users users = usersRepository.findByUserLogin(Users.profile);
-
-        List<Orders> order = ordersService.getOrdersByIdUsers(users.getId_users());
-        System.out.println(order);
-//        Iterable<Products> product = productsRepository.findAll();
-//        Images images = imagesRepository.findByOrdersIdProducts()
-//        model.addAttribute("products", product);
-        model.addAttribute("orders", order);
-
-//        model.addAttribute("images", product.)
-        model.addAttribute("session", Users.session);
-        model.addAttribute("profile", Users.profile);
-        return "orders";
-    }
-
 
     @GetMapping("/add_products")
     public String add_products(Model model) {
@@ -156,14 +139,5 @@ public class ProductsController {
         return "redirect:/products";
     }
 
-    @PostMapping("/products/{id_products}/order")
-    public String order_products(@PathVariable Long id_products, @RequestParam(name = "size") String size, Model model) {
-        Products products = productsRepository.findById(id_products).orElseThrow();
-        System.out.println(size);
-        Users users = usersRepository.findByUserLogin(Users.profile);
-//        Images images = imagesRepository.findById(products.getPreviewImageId());
-        Images images = imagesService.getUrl(products.getPreviewImageId());
-        ordersService.saveOrders(products, images.getUrlImages(), size, users.getId_users());
-        return "redirect:/products/{id_products}";
-    }
+
 }

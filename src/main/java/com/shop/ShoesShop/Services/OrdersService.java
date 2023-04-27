@@ -35,7 +35,9 @@ public class OrdersService {
         return ordersRepository.findAllByIdUsers(id_users);
     }
 
-
+    public Orders findByNameOrders(String nameProducts) {
+        return ordersRepository.findByNameProducts(nameProducts);
+    }
 
 
 }

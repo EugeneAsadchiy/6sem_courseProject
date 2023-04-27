@@ -21,8 +21,8 @@ public class Users {
     private String userPassword;
     @Column(name="role")
     private int role;
-    public static int session=1;
-    public static String profile="admin@mail.ru";
+    public static int session=0;
+    public static String profile="admin1@mail.ru";
     public Users(String userLogin, String userPassword) {
         this.userLogin = userLogin;
         this.userPassword = userPassword;

@@ -42,26 +42,6 @@ public class MainController {
         model.addAttribute("profile", Users.profile);
         return "home";
     }
-//    @PostMapping("/home")
-//    public String SearchProducts(Model model, @RequestParam("") ) {
-//        Iterable<Products> product = productsRepository.findAll();
-//        model.addAttribute("products", product);
-////        model.addAttribute("images", product.)
-//        model.addAttribute("session", Users.session);
-//        model.addAttribute("profile", Users.profile);
-//        return "home";
-//    }
-//    @RequestMapping(value = "/search", method = RequestMethod.POST)
-//    public String search(Model model, @RequestParam("searchName") String name){
-//        System.out.println(name);
-//        List<Products> products = productsService.getProductByName(name);
-//        model.addAttribute("searchName", products);
-//        model.addAttribute("products", products);
-//        System.out.println(products);
-//        model.addAttribute("session", Users.session);
-//        model.addAttribute("profile", Users.profile);
-//        return "home";
-//    }
 
     @GetMapping("/authorization")
     public String authorization(Model model) {
