@@ -36,7 +36,7 @@
                         </li>
                         <li>
                             <#if session==1>
-                                <a href="/" class="nav-link text-white">
+                                <a href="/confirmed_orders" class="nav-link text-white">
                                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"></use></svg>
                                     Заказы
                                 </a>
@@ -54,9 +54,9 @@
                                     Обувь
                                 </a>
                             <#else>
-                                <a href="/" class="nav-link text-white">
+                                <a href="/confirmed_orders" class="nav-link text-white">
                                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"></use></svg>
-                                    ****
+                                    Заказы
                                 </a>
                             </#if>
                         </li>
@@ -95,8 +95,8 @@
         </div>
         <div class="px-3 py-2 border-bottom mb-3">
             <div class="container d-flex flex-wrap justify-content-center">
-                <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search" action="/home" method="get">
+                    <input type="text" name="searchName" class="form-control" placeholder="Поиск..." aria-label="Search">
                 </form>
             </div>
         </div>

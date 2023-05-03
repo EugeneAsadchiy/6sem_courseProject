@@ -1,18 +1,8 @@
 package com.shop.ShoesShop.controllers;
 
-import com.shop.ShoesShop.Services.ImagesService;
-import com.shop.ShoesShop.Services.OrdersService;
-import com.shop.ShoesShop.Services.ProductsService;
-import com.shop.ShoesShop.Services.UsersService;
-import com.shop.ShoesShop.models.Images;
-import com.shop.ShoesShop.models.Orders;
-import com.shop.ShoesShop.models.Products;
-import com.shop.ShoesShop.models.Users;
-import com.shop.ShoesShop.repository.ImagesRepository;
-import com.shop.ShoesShop.repository.OrdersRepository;
-import com.shop.ShoesShop.repository.ProductsRepository;
-import com.shop.ShoesShop.repository.UsersRepository;
-import org.aspectj.weaver.ast.Or;
+import com.shop.ShoesShop.Services.*;
+import com.shop.ShoesShop.models.*;
+import com.shop.ShoesShop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,12 +29,16 @@ public class OrdersController {
     @Autowired
     private ImagesRepository imagesRepository;
     private final ImagesService imagesService;
+    @Autowired
+    private ConfirmedOrdersRepository confirmedOrdersRepository;
+    private final ConfirmedOrdersService confirmedOrdersService;
 
-    public OrdersController(ProductsService productsService, UsersService usersService, OrdersService ordersService, ImagesService imagesService) {
+    public OrdersController(ProductsService productsService, UsersService usersService, OrdersService ordersService, ImagesService imagesService, ConfirmedOrdersService confirmedOrdersService) {
         this.productsService = productsService;
         this.usersService = usersService;
         this.ordersService = ordersService;
         this.imagesService = imagesService;
+        this.confirmedOrdersService = confirmedOrdersService;
     }
 
     @GetMapping("/orders")
@@ -53,24 +47,28 @@ public class OrdersController {
         int full_price=0;
 
         List<Orders> order = ordersService.getOrdersByIdUsers(users.getId_users());
-//        System.out.println();
-
-//        Orders first=order.get(1);
-
-//        System.out.println(first);
         for (Orders or : order) {
             full_price = full_price + Integer.parseInt(or.getCost());
         }
         System.out.println(order);
-//        Iterable<Products> product = productsRepository.findAll();
-//        Images images = imagesRepository.findByOrdersIdProducts()
-//        model.addAttribute("products", product);
+
         model.addAttribute("orders", order);
         model.addAttribute("fullprice", full_price);
-//        model.addAttribute("images", product.)
+
         model.addAttribute("session", Users.session);
         model.addAttribute("profile", Users.profile);
         return "orders";
+    }
+    @PostMapping("/accept_order")
+    public String orders_accept(Model model){
+        Users users = usersRepository.findByUserLogin(Users.profile);
+        List<Orders> order = ordersService.getOrdersByIdUsers(users.getId_users());
+        for(Orders ord : order)
+        {
+            confirmedOrdersService.saveOrders(ord);
+            ordersRepository.delete(ord);
+        }
+        return "redirect:/home";
     }
 
     @PostMapping("/products/{id_products}/order")
@@ -89,5 +87,24 @@ public class OrdersController {
         Orders orders = ordersService.findByNameOrders(nameProducts);
         ordersRepository.delete(orders);
         return "redirect:/orders";
+    }
+    @GetMapping("/confirmed_orders")
+    public String confirmed_orders(Model model) {
+        if (Users.session == 1)
+        {
+            Iterable<ConfirmedOrders> confirmedOrders = confirmedOrdersRepository.findAll();
+            model.addAttribute("confirmedOrders", confirmedOrders);
+
+        }
+        else {
+            Users users = usersRepository.findByUserLogin(Users.profile);
+            List<ConfirmedOrders> confirmedOrders = confirmedOrdersService.getOrdersByIdUsers(users.getId_users());
+            model.addAttribute("confirmedOrders", confirmedOrders);
+        }
+
+        model.addAttribute("session", Users.session);
+        model.addAttribute("profile", Users.profile);
+//        model.addAttribute("images", product.)
+        return "confirmed_orders";
     }
 }

@@ -21,7 +21,9 @@ public class Users {
     private String userPassword;
     @Column(name="role")
     private int role;
+//    public static int session;
     public static int session=0;
+//    public static String profile;
     public static String profile="admin1@mail.ru";
     public Users(String userLogin, String userPassword) {
         this.userLogin = userLogin;

@@ -3,7 +3,7 @@
 
 <head>
     <title></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="/css/${"home.css"}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <#--    <link rel="stylesheet" href="/css/${"home.css"}">-->
@@ -102,41 +102,35 @@
         </div>
     </header>
 </div> <!--header-->
-
-<div>
-    <div style="display: flex; margin: 0px 160px; align-items: center; justify-content: space-between">
-        <h1>Корзина</h1>
-        <form action="/accept_order" method="post">
-        <button class="btn btn-warning" type="submit">Оформить заказ</button>
-        </form>
-        <div style="display: flex">
-            <h1 style="margin-right: 7px;">Итого</h1>
-            <h2 class="box">${fullprice} р.</h2>
-        </div>
-
-    </div>
-    <#list orders as order>
-        <div class="pip">
-            <#--        <a href="products/${order.id_products}" style="text-decoration: none">-->
-            <div class="card" style="width: 18rem;">
-
-                <img src="../img/${order.getUrlImages()?string}" class="card-img-top" alt="...">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">${order.nameProducts}</li>
-                    <li class="list-group-item">${order.cost} р.</li>
-                    <li class="list-group-item">${order.size} размер</li>
-                </ul>
-                <div>
-                    <form action="/orders/${order.nameProducts}/remove" method="post">
-                        <button class="btn btn-warning" type="submit">Удалить</button>
-                    </form>
-                </div>
-            </div>
-            <br>
-            <#--        </a>-->
-        </div>
+<#if session==1>
+    <p>Выручка</p>
+</#if>
+<table class="table" style="margin: 0px auto">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Название</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Пол</th>
+        <th scope="col">Размер</th>
+        <th scope="col">Сезон</th>
+        <th scope="col">Дата</th>
+    </tr>
+    </thead>
+    <tbody>
+    <#list confirmedOrders as orders>
+        <tr>
+            <th scope="row">${orders.id_orders}</th>
+            <td>${orders.nameProducts}</td>
+            <td>${orders.cost} р.</td>
+            <td>${orders.gender}</td>
+            <td>${orders.size}</td>
+            <td>${orders.season}</td>
+            <td>${orders.dataOfCreated.toLocalDate()}</td>
+        </tr>
     </#list>
-</div>
+    </tbody>
+</table>
 
 
 </body>

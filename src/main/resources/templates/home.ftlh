@@ -36,7 +36,7 @@
                         </li>
                         <li>
                             <#if session==1>
-                                <a href="/" class="nav-link text-white">
+                                <a href="/confirmed_orders" class="nav-link text-white">
                                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#table"></use></svg>
                                     Заказы
                                 </a>
@@ -54,9 +54,9 @@
                                     Обувь
                                 </a>
                             <#else>
-                                <a href="/" class="nav-link text-white">
+                                <a href="/confirmed_orders" class="nav-link text-white">
                                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"></use></svg>
-                                    ****
+                                    Заказы
                                 </a>
                             </#if>
                         </li>
@@ -93,13 +93,63 @@
                 </div>
             </div>
         </div>
-        <div class="px-3 py-2 border-bottom mb-3">
-            <div class="container d-flex flex-wrap justify-content-center">
-                <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search" action="/home" method="get">
-                    <input type="text" name="searchName" class="form-control" placeholder="Search..." aria-label="Search">
-                </form>
+        <div class="px-3 py-2 border-bottom mb-3" >
+            <div style="display: flex">
+                <div class="container d-flex flex-wrap justify-content-center">
+                    <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search" action="/home" method="get">
+                        <input type="text" name="searchName" class="form-control" placeholder="Поиск..." aria-label="Search">
+                    </form>
+                </div>
+                <div class="container d-flex flex-wrap justify-content-center">
+                    <h3>Сортировка</h3>
+                    <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" action="/home" method="get" style="margin-left: 10px">
+                        <select class="custom-select form-select">
+                            <option selected>Выбор...</option>
+                            <option value="from_A_0">A-0</option>
+                            <option value="from_0_A">0-A</option>
+                            <option value="from_max_to_min">По убыванию</option>
+                            <option value="from_min_to_max">По возрастанию</option>
+                        </select>
+                    </form>
+                </div>
+            </div><br>
+            <div style="display: flex; align-items: center; justify-content: space-between">
+
+                    <h3 style="margin-top: -5px">Фильтрация</h3>
+                    <div>
+                        <h4>Название</h4>
+                        <input type="text" name="products_name" class="form-control">
+                    </div>
+                    <div>
+                        <h4>Цена</h4>
+                        <div style="display: flex">
+                            <input type="text" name="min_price" class="form-control" >
+                            <input type="text" name="max_price" class="form-control" >
+                        </div>
+
+                    </div>
+
+                    <div>
+                        <h4>Пол</h4>
+                        <select class="custom-select form-select">
+                            <option selected>Выбор...</option>
+                            <option value="man">Мужское</option>
+                            <option value="women">Женское</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h4>Сезон</h4>
+                        <select class="custom-select form-select">
+                            <option selected>Выбор...</option>
+                            <option value="winter">Зима</option>
+                            <option value="spring">Весна</option>
+                            <option value="summer">Лето</option>
+                            <option value="autumn">Осень</option>
+                        </select>
+                    </div>
             </div>
         </div>
+
     </header>
 </div> <!--header-->
 
