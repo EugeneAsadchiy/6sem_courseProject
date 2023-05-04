@@ -102,8 +102,20 @@
         </div>
     </header>
 </div> <!--header-->
+
 <#if session==1>
-    <p>Выручка</p>
+<form action="/confirmed_orders" method="get">
+    <h3 style="position: center">Выручка</h3>
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+<#--        <p>Рассчет валовой выручки</p>-->
+        <input type="text" placeholder="От.." name="date_since" class="form-control" >
+        <input type="text" placeholder="До.." name="date_before" class="form-control" >
+        <input class="btn btn-primary" type="submit" value="Рассчитать">
+        <h2 class="box">${fullprice} р.</h2>
+    </div>
+
+<#--    <input class="btn btn-primary" type="submit" value="Фильтровать">-->
+</form>
 </#if>
 <table class="table" style="margin: 0px auto">
     <thead>
@@ -126,7 +138,7 @@
             <td>${orders.gender}</td>
             <td>${orders.size}</td>
             <td>${orders.season}</td>
-            <td>${orders.dataOfCreated.toLocalDate()}</td>
+            <td>${orders.dataOfCreated.toString()}</td>
         </tr>
     </#list>
     </tbody>

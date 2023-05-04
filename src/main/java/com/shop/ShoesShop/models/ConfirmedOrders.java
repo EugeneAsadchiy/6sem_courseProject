@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +33,11 @@ public class ConfirmedOrders {
     private String gender;
     @Column(name="id_users")
     private Long idUsers;
-    private LocalDateTime dataOfCreated;
+    private LocalDate dataOfCreated;
 
     @PrePersist
     private void init() {
-        dataOfCreated = LocalDateTime.now();
+        dataOfCreated = LocalDate.now();
     }
 
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "orders", orphanRemoval = true)

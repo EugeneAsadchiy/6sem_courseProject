@@ -15,7 +15,8 @@ public interface ProductsRepository extends JpaRepository<Products, Long> {
                                                                       String gender,String season);
     List<Products> findByCostBetween(int min_price, int max_price);
     List<Products> findByCostBetweenAndGenderAndSeason(int min_price, int max_price,String gender,String season );
-
-    List<Products> findByCost(Sort cost);
+    List <Products> findByNameProductsAndCostBetween(String products_name,int min_price, int max_price);
+    List<Products> findByCostBetween(int min_price, int max_price, Sort sort);
+//    List<Products> findByCost(Sort cost);
 //    List<Products> findByName_products(String name_products);
 }

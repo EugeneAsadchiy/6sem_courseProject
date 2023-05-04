@@ -4,6 +4,7 @@ import com.shop.ShoesShop.Services.*;
 import com.shop.ShoesShop.models.*;
 import com.shop.ShoesShop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -89,12 +94,33 @@ public class OrdersController {
         return "redirect:/orders";
     }
     @GetMapping("/confirmed_orders")
-    public String confirmed_orders(Model model) {
+    public String confirmed_orders(@RequestParam(name = "date_since", required = false, defaultValue = "")  String date_since,
+                                   @RequestParam(name = "date_before", required = false, defaultValue = "") String  date_before,
+            Model model) {
+
         if (Users.session == 1)
         {
-            Iterable<ConfirmedOrders> confirmedOrders = confirmedOrdersRepository.findAll();
-            model.addAttribute("confirmedOrders", confirmedOrders);
+            int full_price=0;
+            if(!date_since.equals("") && !date_before.equals(""))
+            {
+//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                LocalDate dateTime_since=LocalDate.parse(date_since);
+                LocalDate dateTime_before=LocalDate.parse(date_before);
 
+//                LocalDateTime dateTime_since = LocalDateTime.parse(date_since, formatter);
+//                LocalDateTime dateTime_before = LocalDateTime.parse(date_before, formatter);
+                System.out.println(dateTime_since);
+                List<ConfirmedOrders> confirmedOrders = confirmedOrdersService.getAllByDate(dateTime_since, dateTime_before);
+
+                for (ConfirmedOrders or : confirmedOrders) {
+                    full_price = full_price + or.getCost();
+                }
+
+//                model.addAttribute("fullprice", full_price);
+            }
+            Iterable<ConfirmedOrders> confirmedOrders = confirmedOrdersRepository.findAll();
+            model.addAttribute("fullprice", full_price);
+            model.addAttribute("confirmedOrders", confirmedOrders);
         }
         else {
             Users users = usersRepository.findByUserLogin(Users.profile);

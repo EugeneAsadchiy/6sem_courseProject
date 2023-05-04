@@ -104,8 +104,8 @@
                     <h3>Сортировка</h3>
                     <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto d-flex" action="/home" method="get" style="margin-left: 10px">
                         <select name="sort_by_price" class="custom-select form-select">
-                            <option selected value="from_max_to_min">По убыванию</option>
-                            <option value="from_min_to_max">По возрастанию</option>
+                            <option selected value="DESC">По убыванию</option>
+                            <option value="ASC">По возрастанию</option>
                         </select>
                         <input class="btn btn-primary" style="margin-left: 30px" type="submit" value="Сортировать">
                     </form>
@@ -122,8 +122,8 @@
                     <div>
                         <h4>Цена</h4>
                         <div style="display: flex">
-                            <input type="text" name="min_price" class="form-control" >
-                            <input type="text" name="max_price" class="form-control" >
+                            <input type="text" placeholder="От.." name="min_price" class="form-control" >
+                            <input type="text" placeholder="До.." name="max_price" class="form-control" >
                         </div>
 
                     </div>
@@ -147,6 +147,7 @@
                         </select>
                     </div>
                     <input class="btn btn-primary" type="submit" value="Фильтровать">
+
                 </div>
             </form>
         </div>

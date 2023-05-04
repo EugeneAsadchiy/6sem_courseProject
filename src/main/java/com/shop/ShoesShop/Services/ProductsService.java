@@ -69,6 +69,16 @@ public class ProductsService {
         return productsRepository.findByCostBetweenAndGenderAndSeason(Integer.parseInt(min_price),
                 Integer.parseInt(max_price), gender,season);
     }
+    public List<Products> sortProductsNamePrice(String products_name,String min_price, String max_price)
+    {
+        return productsRepository.findByNameProductsAndCostBetween(products_name,Integer.parseInt(min_price),
+                Integer.parseInt(max_price));
+    }
+    public List<Products>  sortASCandDESC(String min,String max, String sort)
+    {
+        return productsRepository.findByCostBetween(Integer.parseInt(min),
+                Integer.parseInt(max), Sort.by(Sort.Direction.fromString(sort), "cost"));
+    }
 //    public List<Products> sortProductsByDESCAndASC(String sort_by_price)
 //    {
 //        return productsRepository.findByCost(Sort.by(Sort.Direction.fromString(sort_by_price), "cost"));

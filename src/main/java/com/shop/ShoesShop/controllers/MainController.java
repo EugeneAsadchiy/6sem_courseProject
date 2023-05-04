@@ -41,7 +41,17 @@ public class MainController {
                            @RequestParam(name = "sort_by_price", required = false, defaultValue = "") String sort_by_price,
                            Model model)
     {
-        if (!products_name.equals("")) {
+        if (!products_name.equals("") && !min_price.equals("0") && !max_price.equals("99999") && gender.equals("") && season.equals(""))
+        {
+            System.out.println(products_name+ min_price + max_price+gender+season);
+            model.addAttribute("products", productsService.sortProductsNamePrice(products_name, min_price, max_price));
+
+        }
+        else if(min_price.equals("0") && max_price.equals("99999") && !sort_by_price.equals("")){
+            model.addAttribute("products", productsService.sortASCandDESC(min_price,max_price,sort_by_price));
+        }
+        else if (!products_name.equals("") && !min_price.equals("0") && !max_price.equals("99999") && !gender.equals("") && !season.equals(""))
+        {
             System.out.println(products_name+ min_price + max_price+gender+season);
             model.addAttribute("products", productsService.sortProducts(products_name, min_price, max_price, gender, season));
 
