@@ -24,11 +24,11 @@ public class Products {
     @Column(name = "season")
     private String season;
     @Column(name = "amount")
-    private String amount;
+    private int amount;
     @Column(name = "size")
     private String size;
     @Column(name = "cost")
-    private String cost;
+    private int cost;
     @Column(name = "gender")
     private String gender;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "products", orphanRemoval = true)
@@ -47,7 +47,7 @@ public class Products {
     }
 
 
-    public Products(String nameProducts, String season, String amount, String size, String cost, String gender) {
+    public Products(String nameProducts, String season, int amount, String size, int cost, String gender) {
         this.nameProducts = nameProducts;
         this.season = season;
         this.amount = amount;

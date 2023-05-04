@@ -24,7 +24,7 @@ public class ConfirmedOrdersService {
         confirmedOrders.setNameProducts(orders.getNameProducts());
         confirmedOrders.setCost(orders.getCost());
         confirmedOrders.setGender(orders.getGender());
-        confirmedOrders.setAmount("1");
+        confirmedOrders.setAmount(1);
         confirmedOrders.setSeason(orders.getSeason());
         confirmedOrders.setIdUsers(orders.getIdUsers());
         confirmedOrders.setSize(orders.getSize());

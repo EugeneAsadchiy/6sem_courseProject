@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class MainController {
@@ -31,13 +32,39 @@ public class MainController {
     }
 
     @GetMapping("/home")
-    public String Products(@RequestParam(value = "searchName", required = false) String searchName, Model model) {
-//        Iterable<Products> product = productsRepository.findAll();
-        List<Products> product = productsService.getProductByName(searchName);
-        model.addAttribute("products", product);
-//        List<Products> products = productsService.getProductByName(searchName);
+    public String Products(@RequestParam(value = "searchName", required = false) String searchName,
+                           @RequestParam(name = "products_name", required = false, defaultValue = "") String products_name,
+                           @RequestParam(name = "min_price", required = false, defaultValue = "0") String min_price,
+                           @RequestParam(name = "max_price", required = false, defaultValue = "99999") String max_price,
+                           @RequestParam(name = "gender", required = false, defaultValue = "") String gender,
+                           @RequestParam(name = "season", required = false, defaultValue = "") String season,
+                           @RequestParam(name = "sort_by_price", required = false, defaultValue = "") String sort_by_price,
+                           Model model)
+    {
+        if (!products_name.equals("")) {
+            System.out.println(products_name+ min_price + max_price+gender+season);
+            model.addAttribute("products", productsService.sortProducts(products_name, min_price, max_price, gender, season));
 
-//        model.addAttribute("images", product.)
+        }
+        else if (!min_price.equals("0") && !max_price.equals("99999") && gender.equals("") && season.equals("") ) {
+
+            model.addAttribute("products", productsService.sortProductsbyPrice(min_price, max_price));
+
+        }
+        else if (!min_price.equals("0") && !max_price.equals("99999") && !gender.equals("") && !season.equals("") ) {
+
+            model.addAttribute("products", productsService.sortProductsbyPriceAndGenderAndSeason(min_price, max_price, gender,season));
+
+        }
+//        else if (!sort_by_price.equals("")) {
+//
+//            model.addAttribute("products", productsService.sortProductsByDESCAndASC(sort_by_price));
+//
+//        }
+        else{
+            List<Products> product = productsService.getProductByName(searchName);
+            model.addAttribute("products", product);
+        }
         model.addAttribute("session", Users.session);
         model.addAttribute("profile", Users.profile);
         return "home";

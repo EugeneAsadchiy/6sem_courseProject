@@ -5,6 +5,7 @@ import com.shop.ShoesShop.models.Products;
 import com.shop.ShoesShop.repository.ProductsRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -52,6 +53,26 @@ public class ProductsService {
         images.setBytes(file.getBytes());
         return images;
     }
+    public List<Products> sortProducts(String products_name,String min_price, String max_price,
+                                       String gender,String season)
+    {
+        return productsRepository.findByNameProductsAndCostBetweenAndGenderAndSeason(products_name, Integer.parseInt(min_price),
+                Integer.parseInt(max_price), gender,season);
+    }
+    public List<Products> sortProductsbyPrice(String min_price, String max_price)
+    {
+        return productsRepository.findByCostBetween(Integer.parseInt(min_price),
+                Integer.parseInt(max_price));
+    }
+    public List<Products> sortProductsbyPriceAndGenderAndSeason(String min_price, String max_price, String gender, String season)
+    {
+        return productsRepository.findByCostBetweenAndGenderAndSeason(Integer.parseInt(min_price),
+                Integer.parseInt(max_price), gender,season);
+    }
+//    public List<Products> sortProductsByDESCAndASC(String sort_by_price)
+//    {
+//        return productsRepository.findByCost(Sort.by(Sort.Direction.fromString(sort_by_price), "cost"));
+//    }
 
     public Products getProductById(Long id)
     {

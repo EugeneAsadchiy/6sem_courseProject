@@ -21,7 +21,7 @@ public class OrdersService {
         orders.setNameProducts(products.getNameProducts());
         orders.setCost(products.getCost());
         orders.setGender(products.getGender());
-        orders.setAmount("1");
+        orders.setAmount(1);
         orders.setSeason(products.getSeason());
         orders.setIdUsers(id_users);
         orders.setSize(size);

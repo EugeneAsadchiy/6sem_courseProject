@@ -102,18 +102,17 @@
                 </div>
                 <div class="container d-flex flex-wrap justify-content-center">
                     <h3>Сортировка</h3>
-                    <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" action="/home" method="get" style="margin-left: 10px">
-                        <select class="custom-select form-select">
-                            <option selected>Выбор...</option>
-                            <option value="from_A_0">A-0</option>
-                            <option value="from_0_A">0-A</option>
-                            <option value="from_max_to_min">По убыванию</option>
+                    <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto d-flex" action="/home" method="get" style="margin-left: 10px">
+                        <select name="sort_by_price" class="custom-select form-select">
+                            <option selected value="from_max_to_min">По убыванию</option>
                             <option value="from_min_to_max">По возрастанию</option>
                         </select>
+                        <input class="btn btn-primary" style="margin-left: 30px" type="submit" value="Сортировать">
                     </form>
                 </div>
             </div><br>
-            <div style="display: flex; align-items: center; justify-content: space-between">
+            <form action="/home" method="get">
+                <div style="display: flex; align-items: center; justify-content: space-between">
 
                     <h3 style="margin-top: -5px">Фильтрация</h3>
                     <div>
@@ -131,23 +130,25 @@
 
                     <div>
                         <h4>Пол</h4>
-                        <select class="custom-select form-select">
-                            <option selected>Выбор...</option>
-                            <option value="man">Мужское</option>
-                            <option value="women">Женское</option>
+                        <select name="gender" class="custom-select form-select">
+                            <option disabled selected value="Выбор">Выбор</option>
+                            <option value="Мужской">Мужское</option>
+                            <option value="Женское">Женское</option>
                         </select>
                     </div>
                     <div>
                         <h4>Сезон</h4>
-                        <select class="custom-select form-select">
-                            <option selected>Выбор...</option>
-                            <option value="winter">Зима</option>
-                            <option value="spring">Весна</option>
-                            <option value="summer">Лето</option>
-                            <option value="autumn">Осень</option>
+                        <select name="season" class="custom-select form-select">
+                            <option disabled selected value="Выбор">Выбор</option>
+                            <option value="Зима">Зима</option>
+                            <option value="Весна">Весна</option>
+                            <option value="Лето">Лето</option>
+                            <option value="Осень">Осень</option>
                         </select>
                     </div>
-            </div>
+                    <input class="btn btn-primary" type="submit" value="Фильтровать">
+                </div>
+            </form>
         </div>
 
     </header>

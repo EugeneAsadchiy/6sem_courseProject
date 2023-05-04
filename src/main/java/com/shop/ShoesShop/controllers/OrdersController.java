@@ -48,7 +48,7 @@ public class OrdersController {
 
         List<Orders> order = ordersService.getOrdersByIdUsers(users.getId_users());
         for (Orders or : order) {
-            full_price = full_price + Integer.parseInt(or.getCost());
+            full_price = full_price + or.getCost();
         }
         System.out.println(order);
 

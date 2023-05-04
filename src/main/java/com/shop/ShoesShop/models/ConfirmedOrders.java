@@ -23,11 +23,11 @@ public class ConfirmedOrders {
     @Column(name="season")
     private String season;
     @Column(name="amount")
-    private String amount;
+    private int amount;
     @Column(name = "size")
     private String size;
     @Column(name="cost")
-    private String cost;
+    private int cost;
     @Column(name="gender")
     private String gender;
     @Column(name="id_users")
