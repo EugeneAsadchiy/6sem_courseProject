@@ -21,7 +21,7 @@
 
                     <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                         <li>
-                            <a href="/home" class="nav-link text-secondary">
+                            <a href="/home" class="nav-link text-white">
                                 <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#home"></use></svg>
                                 Главная
                             </a>
@@ -54,7 +54,7 @@
                                     Обувь
                                 </a>
                             <#else>
-                                <a href="/confirmed_orders" class="nav-link text-white">
+                                <a href="/confirmed_orders" class="nav-link text-secondary">
                                     <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"></use></svg>
                                     Заказы
                                 </a>
@@ -93,25 +93,24 @@
                 </div>
             </div>
         </div>
-        <div class="px-3 py-2 border-bottom mb-3">
-            <div class="container d-flex flex-wrap justify-content-center">
-                <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search" action="/home" method="get">
-                    <input type="text" name="searchName" class="form-control" placeholder="Поиск..." aria-label="Search">
-                </form>
-            </div>
-        </div>
+
     </header>
 </div> <!--header-->
 
 <#if session==1>
 <form action="/confirmed_orders" method="get">
-    <h3 style="position: center">Выручка</h3>
+    <h3 style="position: absolute">Выручка</h3>
     <div style="display: flex; align-items: center; justify-content: space-between;">
 <#--        <p>Рассчет валовой выручки</p>-->
-        <input type="text" placeholder="От.." name="date_since" class="form-control" >
-        <input type="text" placeholder="До.." name="date_before" class="form-control" >
-        <input class="btn btn-primary" type="submit" value="Рассчитать">
-        <h2 class="box">${fullprice} р.</h2>
+        <input style="margin-left: 10px" type="text" placeholder="От.." name="date_since" class="form-control" >
+        <input style="margin-left: 10px" type="text" placeholder="До.." name="date_before" class="form-control" >
+        <input class="btn btn-primary" style="margin-left: 10px" type="submit" value="Рассчитать">
+        <div style="display: flex">
+            <h1 style="margin-right: 10px;margin-left: 10px; margin-top: 25px">Итого</h1>
+            <h2 class="box" style="margin-left: 10px; margin-right: 50px">${fullprice} р.</h2>
+        </div>
+
+
     </div>
 
 <#--    <input class="btn btn-primary" type="submit" value="Фильтровать">-->

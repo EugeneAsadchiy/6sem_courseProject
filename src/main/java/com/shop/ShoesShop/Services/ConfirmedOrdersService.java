@@ -41,15 +41,7 @@ public class ConfirmedOrdersService {
     public List<ConfirmedOrders> getAllByDate(LocalDate date_since, LocalDate date_before){
         return confirmedOrdersRepository.findAllByDataOfCreatedBetween(date_since,date_before);
     }
-//    public List<Orders> getOrdersByIdUsers(Long id_users)
-//    {
-//        return ordersRepository.findAllByIdUsers(id_users);
-//    }
-
     public Orders findByNameOrders(String nameProducts) {
         return ordersRepository.findByNameProducts(nameProducts);
     }
-
-
-
 }

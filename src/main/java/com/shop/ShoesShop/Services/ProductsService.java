@@ -43,7 +43,6 @@ public class ProductsService {
 //        log.info("Saving new Product name:{}", products);
         productsRepository.save(products);
     }
-
     private Images toImageEntity(MultipartFile file) throws IOException {
         Images images = new Images();
         images.setName_images(file.getName());
@@ -79,10 +78,6 @@ public class ProductsService {
         return productsRepository.findByCostBetween(Integer.parseInt(min),
                 Integer.parseInt(max), Sort.by(Sort.Direction.fromString(sort), "cost"));
     }
-//    public List<Products> sortProductsByDESCAndASC(String sort_by_price)
-//    {
-//        return productsRepository.findByCost(Sort.by(Sort.Direction.fromString(sort_by_price), "cost"));
-//    }
 
     public Products getProductById(Long id)
     {
@@ -93,7 +88,6 @@ public class ProductsService {
         if (name == null) return productsRepository.findAll();
         if (name.length() >= 1) return productsRepository.findByNameProducts(name);
         return  productsRepository.findAll();
-//        return productsRepository.findByNameProducts(name);
     }
 
 

@@ -24,7 +24,7 @@ public class Users {
 //    public static int session;
     public static int session=0;
 //    public static String profile;
-    public static String profile="admin1@mail.ru";
+    public static String profile="z.asadchiy@mail.ru";
     public Users(String userLogin, String userPassword) {
         this.userLogin = userLogin;
         this.userPassword = userPassword;

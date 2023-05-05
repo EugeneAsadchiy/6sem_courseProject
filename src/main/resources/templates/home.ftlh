@@ -94,17 +94,17 @@
             </div>
         </div>
         <div class="px-3 py-2 border-bottom mb-3" >
-            <div style="display: flex">
+            <div style="display: flex; align-items: center; justify-content: space-between">
                 <div class="container d-flex flex-wrap justify-content-center">
                     <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search" action="/home" method="get">
                         <input type="text" name="searchName" class="form-control" placeholder="Поиск..." aria-label="Search">
                     </form>
                 </div>
                 <div class="container d-flex flex-wrap justify-content-center">
-                    <h3>Сортировка</h3>
                     <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto d-flex" action="/home" method="get" style="margin-left: 10px">
                         <select name="sort_by_price" class="custom-select form-select">
-                            <option selected value="DESC">По убыванию</option>
+                            <option disabled selected>Сортировка...</option>
+                            <option value="DESC">По убыванию</option>
                             <option value="ASC">По возрастанию</option>
                         </select>
                         <input class="btn btn-primary" style="margin-left: 30px" type="submit" value="Сортировать">
@@ -114,7 +114,7 @@
             <form action="/home" method="get">
                 <div style="display: flex; align-items: center; justify-content: space-between">
 
-                    <h3 style="margin-top: -5px">Фильтрация</h3>
+                    <h3 style="margin-top: 35px">Фильтрация</h3>
                     <div>
                         <h4>Название</h4>
                         <input type="text" name="products_name" class="form-control">
@@ -146,7 +146,7 @@
                             <option value="Осень">Осень</option>
                         </select>
                     </div>
-                    <input class="btn btn-primary" type="submit" value="Фильтровать">
+                    <input class="btn btn-primary" style="margin-top: 35px" type="submit" value="Фильтровать">
 
                 </div>
             </form>

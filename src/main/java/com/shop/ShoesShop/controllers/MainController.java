@@ -66,11 +66,7 @@ public class MainController {
             model.addAttribute("products", productsService.sortProductsbyPriceAndGenderAndSeason(min_price, max_price, gender,season));
 
         }
-//        else if (!sort_by_price.equals("")) {
-//
-//            model.addAttribute("products", productsService.sortProductsByDESCAndASC(sort_by_price));
-//
-//        }
+
         else{
             List<Products> product = productsService.getProductByName(searchName);
             model.addAttribute("products", product);
@@ -118,8 +114,4 @@ public class MainController {
             return "redirect:/home";
         }
     }
-
-
-
-
 }
